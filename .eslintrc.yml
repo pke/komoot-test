@@ -1,0 +1,51 @@
+env:
+  browser: true
+  es6: true
+  node: true
+  mocha: true
+extends:
+  - 'eslint:recommended'
+  - 'plugin:react/recommended'
+  - 'plugin:import/recommended'
+  - 'plugin:mocha/recommended'
+  - 'plugin:jsdoc/recommended'
+globals:
+  Atomics: readonly
+  SharedArrayBuffer: readonly
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: 2018
+  sourceType: module
+settings:
+  react:
+    version: "16.12"
+plugins:
+  - react
+  - mocha
+  - import
+  - react-hooks
+  - jsdoc
+rules:
+  react-hooks/rules-of-hooks: error
+  indent:
+    - warn
+    - 2
+  linebreak-style:
+    - error
+    - unix
+  quotes:
+    - error
+    - double
+  semi:
+    - error
+    - never
+  comma-dangle: [ "warn", { arrays: "always-multiline", objects: "always-multiline" } ]
+  space-infix-ops: warn
+  no-multi-spaces: warn
+  no-trailing-spaces:
+    - warn
+    - skipBlankLines: true
+  no-whitespace-before-property: error
+  no-spaced-func: error
+  no-shadow: ["error", { allow: ["options"] }]

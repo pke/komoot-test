@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./index.css" />
+  <title>{{name}} ({{process.env.GIT_VERSION}})</title>
+</head>
+<body>
+  <main id="app" data-version="{{process.env.GIT_VERSION}}" data-branch="{{process.env.GIT_BRANCH}}"></main>
+  <script src="./index.js"></script>
+</body>
+</html>

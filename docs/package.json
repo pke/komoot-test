@@ -1,0 +1,20 @@
+{
+  "name": "docs",
+  "private": true,
+  "devDependencies": {
+    "@babel/core": "7.7.7",
+    "@babel/preset-env": "7.7.7",
+    "@babel/preset-react": "7.7.4",
+    "babel-loader": "8.0.6",
+    "css-loader": "3.4.1",
+    "documentation": "12.1.4",
+    "react-styleguidist": "10.4.0",
+    "url-loader": "3.0.0",
+    "webpack": "4.41.5"
+  },
+  "scripts": {
+    "build:hooks": "documentation build --document-exported ../src/hooks/*.js -f md -o ./hooks.md",
+    "build": "npm run build:hooks && styleguidist build",
+    "dev": "npm run build:hooks -- --watch & styleguidist server"
+  }
+}

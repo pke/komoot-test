@@ -1,0 +1,14 @@
+{
+  "cSpell.words": [
+    "Komoot"
+  ],
+  "cSpell.ignoreWords": [
+    "coord",
+    "PROPTYPES",
+    "latlng",
+    "readonly",
+    "linebreak",
+    "trkpt",
+    "trkseg"
+  ]
+}

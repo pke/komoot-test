@@ -1,0 +1,48 @@
+{
+  "name": "komoot-test",
+  "version": "1.0.0",
+  "private": true,
+  "description": "komoot job application test",
+  "license": "MIT",
+  "repository": "pke/komoot-test",
+  "homepage": "https://komoot-test.now.sh/",
+  "scripts": {
+    "postinstall": "cd ./docs && npm ci",
+    "dev": "parcel ./src/index.html",
+    "dev:docs": "cd docs && npm run dev",
+    "build:docs": "cd docs && npm run build",
+    "prebuild": "npm run build:docs",
+    "build": "parcel build ./src/index.html --out-dir ./public",
+    "test": "mochista --files tests/*.test.js --coverage",
+    "testw": "npm t -- --watch",
+    "lint:js": "eslint ./src/**/*.js",
+    "lint:css": "stylelint ./src/**/*.css"
+  },
+  "author": {
+    "name": "Philipp Kursawe",
+    "email": "phil.kursawe+komoot@gmail.com",
+    "url": "https://pke.fyi/"
+  },
+  "dependencies": {
+    "leaflet": "1.6.0",
+    "parcel-bundler": "1.12.4",
+    "prop-types": "15.7.2",
+    "react": "16.12.0",
+    "react-dom": "16.12.0"
+  },
+  "devDependencies": {
+    "chai": "4.2.0",
+    "enzyme": "3.11.0",
+    "eslint": "6.8.0",
+    "eslint-plugin-import": "2.19.1",
+    "eslint-plugin-jsdoc": "20.0.0",
+    "eslint-plugin-mocha": "6.2.2",
+    "eslint-plugin-react": "7.17.0",
+    "eslint-plugin-react-hooks": "2.3.0",
+    "mochista": "0.22.0",
+    "parcel-plugin-bundle-visualiser": "1.2.0",
+    "posthtml-expressions": "1.1.1",
+    "stylelint": "12.0.1",
+    "stylelint-config-standard": "19.0.0"
+  }
+}
