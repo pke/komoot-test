@@ -30,10 +30,10 @@ export default function TrackPointList({
 
   const render = (item, index) => {
     let distance
-    if (index < lastItemIndex) {
+    if (lastItemIndex - index >= 1) {
       const next = items[index + 1]
       distance = getDistance(item[0], item[1], next[0], next[1])
-    } else if (index > 0) {
+    } else if (index > 0 && index === lastItemIndex) {
       distance = totalDistance
     }
     const onRemoveClick = () => onRemove(index)
