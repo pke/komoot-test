@@ -29,15 +29,17 @@ export default function TrackPointListItem({
       onDragStart={onDragStart}
       onDragEnd={onDragEnd}
       onDragOver={onDragOver}>
-      <div style={styles.firstLine}>
-        { title || `${coord[0].toFixed(4)} ${coord[1].toFixed(4)}` }
-        <a
-          className="remove"
-          href="#"
-          onClick={onRemoveClick}
-          title="Remove"/>
+      <div>
+        <div style={styles.firstLine}>
+          { title || `${coord[0].toFixed(4)} ${coord[1].toFixed(4)}` }
+          <a
+            className="remove"
+            href="#"
+            onClick={onRemoveClick}
+            title="Remove"/>
+        </div>
+        { distance && <Distance distance={distance} style={styles.distance}/> }
       </div>
-      { distance && <Distance distance={distance} style={styles.distance}/> }
     </li>
   )
 }

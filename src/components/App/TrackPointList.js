@@ -16,7 +16,14 @@ const defaultTitle = (index, lastIndex) => (
 
 const key = coord => coord.toString()
 
-export default function TrackPointList({ items, children, className = "list", onRemove, onMove }) {
+export default function TrackPointList({
+  items,
+  totalDistance,
+  children,
+  className = "list",
+  onRemove,
+  onMove,
+}) {
   const lastItemIndex = items.length - 1
   const draggedIndexRef = useRef()
   const draggedOverIndexRef = useRef()
@@ -26,6 +33,8 @@ export default function TrackPointList({ items, children, className = "list", on
     if (index < lastItemIndex) {
       const prev = items[index + 1]
       distance = getDistance(item[0], item[1], prev[0], prev[1])
+    } else {
+      distance = totalDistance
     }
     const onRemoveClick = () => onRemove(index)
     const onDragOver = () => {
@@ -58,17 +67,13 @@ export default function TrackPointList({ items, children, className = "list", on
     />
   }
   const renderedItems = items.map(render)
-  const style = {
-    paddingLeft: "1rem",
-    overflowY: "auto",
-    flex: 1,
-  }
-  return renderedItems.length ? <ol className={className} style={style}>
+  return renderedItems.length ? <ol className={className}>
     { renderedItems }
   </ol> : <div className={className}>{children}</div>
 }
 TrackPointList.propTypes = {
   items: PropTypes.array,
+  totalDistance: PropTypes.number,
   children: PropTypes.node,
   className: PropTypes.string,
   onRemove: PropTypes.func,
