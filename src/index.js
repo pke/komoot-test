@@ -2,7 +2,7 @@ import React from "react"
 import { render } from "react-dom"
 
 import App from "./components/App/App"
-import { author, name } from "../package.json"
+import { author } from "../package.json"
 
 const COORDS = [
   [52.4794347588594,13.022747039794924,0,""],
@@ -15,7 +15,6 @@ const COORDS = [
 const root = document.getElementById("app")
 render(
   <App
-    title={name}
     feedbackEmail={author.email}
     git={{
       version: root.dataset.version,
