@@ -31,9 +31,9 @@ export default function Map({ coords, onAddMarker, onUpdateMarker }) {
       center: [52.49399462011186, 13.048869228791695],
       zoom: 13,
       layers: [
-        L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+        L.tileLayer("https://{s}.tile.osm.org/{z}/{x}/{y}.png", {
           attribution:
-            "&copy; <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors",
+            "&copy; <a href=\"https://osm.org/copyright\">OpenStreetMap</a> contributors",
         }),
       ],
     })
