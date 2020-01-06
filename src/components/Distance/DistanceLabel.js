@@ -3,22 +3,14 @@ import React from "react"
 
 import formatDistance from "./formatDistance"
 
-export default function DistanceLabel({ distance, style }) {
-  if (!distance) {
-    return <span style={style}/>
-  }
-  {/*i18n*/}
+export default function DistanceLabel({ distance, ...props }) {
   return (
-    <span
-      style={style}
-      className="distance"
-    >
-      {"ca. " + formatDistance(distance)}
+    <span className="distance" {...props}>
+      { formatDistance(distance) }
     </span>
   )
 }
 DistanceLabel.propTypes = {
   /** Distance in km */
   distance: PropTypes.number.isRequired,
-  style: PropTypes.object,
 }

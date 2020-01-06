@@ -17,10 +17,7 @@ export default function TrackPointListItem({
     firstLine: {
       display: "flex",
       justifyContent: "space-between",
-    },
-    distance: {
-      textAlign: "center",
-    },
+    }
   }
   return (
     <li
@@ -31,14 +28,14 @@ export default function TrackPointListItem({
       onDragOver={onDragOver}>
       <div>
         <div style={styles.firstLine}>
-          { title || `${coord[0].toFixed(4)} ${coord[1].toFixed(4)}` }
+          { title || `${coord[0].toFixed(4)}\n${coord[1].toFixed(4)}` }
           <a
             className="remove"
             href="#"
             onClick={onRemoveClick}
             title="Remove"/>
         </div>
-        { distance && <Distance distance={distance} style={styles.distance}/> }
+        <Distance distance={distance}/>
       </div>
     </li>
   )
