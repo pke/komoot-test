@@ -17,7 +17,7 @@ export default function TrackPointListItem({
     firstLine: {
       display: "flex",
       justifyContent: "space-between",
-    }
+    },
   }
   return (
     <li
@@ -35,7 +35,7 @@ export default function TrackPointListItem({
             onClick={onRemoveClick}
             title="Remove"/>
         </div>
-        <Distance distance={distance}/>
+        { !!distance && <Distance distance={distance}/> }
       </div>
     </li>
   )
