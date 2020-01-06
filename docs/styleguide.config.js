@@ -29,6 +29,18 @@ module.exports = {
       components: "../src/components/**/[A-Z]*.js",
     },
   ],
+  theme: {
+    fontSize : {
+      base: 12,
+      text: 10,
+      h1: 17,
+      h2: 16,
+      h3: 15,
+      h4: 14,
+      h5: 13,
+      h6: 12,
+    },
+  },
   webpackConfig: {
     module: {
       rules: [

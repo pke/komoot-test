@@ -6,6 +6,8 @@ import useDialog from "../../hooks/useDialog"
 import useTrackPoints from "../../hooks/useTrackPoints"
 import useUndo from "../../hooks/useUndo"
 
+import getDistance from "../Distance/getDistance"
+
 import AddMarkerDialog from "./AddMarkerDialog"
 import ExportButton from "../Export/ExportButton"
 import Flex from "../Flex"
@@ -18,7 +20,7 @@ import PrivacyPolicyLink from "../PrivacyPolicy/PrivacyPolicyLink"
 import ResetTrackButton from "./ResetTrackButton"
 import TrackPointList from "./TrackPointList"
 import Tools from "./Tools"
-import TotalDistance from "../Distance/TotalDistance"
+import DistanceLabel from "../Distance/DistanceLabel"
 import VersionLabel from "./VersionLabel"
 
 export default function App({ feedbackEmail, coords:initialCoords, git }) {
@@ -71,22 +73,31 @@ export default function App({ feedbackEmail, coords:initialCoords, git }) {
     }
   }
 
+  // FIXME: memoize this with useMemo
+  const totalDistance = trackPoints.reduce((total, coord, index, all) => {
+    if (index > 0) {
+      const prev = all[index - 1]
+      total += getDistance(coord[0], coord[1], prev[0], prev[1])
+    }
+    return total
+  }, 0)
+
   return (
     <>
       <Tools>
         <span className="logo"><sup>test</sup></span>
         { canUndo && <button onClick={undo}>Undo</button> }
-        <TrackPointList items={trackPoints} onRemove={removeTrackPoint} onMove={moveTrackPoint}>
+        <TrackPointList items={trackPoints} onRemove={removeTrackPoint} onMove={moveTrackPoint} totalDistance={totalDistance}>
           <p>Add some track points by clicking on the map.</p>
           <Hint>Hold down CTRL while clicking to give the track point a name.</Hint>
         </TrackPointList>
-        { !!trackPoints.length && <div>
-          { trackPoints.length > 1 && <TotalDistance coords={trackPoints}/> }
+        { !!trackPoints.length && <div className="track-infos">
+          { trackPoints.length > 1 && <span className="total-distance">Total: <DistanceLabel distance={totalDistance}/></span> }
           { trackPoints.length > 1 && <Hint>Re-arrange track points by drag & drop</Hint> }
           <ResetTrackButton reset={clearTrackPoints} disabled={!trackPoints.length} className="secondary"/>
         </div>
         }
-        <div>
+        <div className="export">
           <ExportButton coords={trackPoints} creator={document.location.origin}>View GPX</ExportButton>
           <ExportButton coords={trackPoints} fileName="komoot-test.gpx" creator={document.location.origin}>Download GPX</ExportButton>
         </div>
