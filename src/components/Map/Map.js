@@ -15,7 +15,10 @@ import "leaflet/src/layer/vector/Renderer.getRenderer"
 
 //delete L.Icon.Default.prototype._getIconUrl
 
-import "leaflet/dist/leaflet.css"
+// Use this until https://github.com/parcel-bundler/parcel/pull/3887 is
+// published on npm
+import "./leaflet.css"
+
 // Bundlers do not package the leaflet assets referenced from the leaflet.css
 // properly, so we do it here manually.
 // https://github.com/parcel-bundler/parcel/issues/973#issuecomment-484470626
