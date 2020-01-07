@@ -10,7 +10,7 @@ const gitCommands = {
 }
 Object.keys(gitCommands).forEach((key) => {
   const value = gitCommands[key]
-  process.env[key] = /^git/.test(value) ? execSync().toString().replace("\n", "") : value
+  process.env[key] = /^git/.test(value) ? execSync(value).toString().replace("\n", "") : value
 })
 
 module.exports = {

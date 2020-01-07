@@ -1,22 +1,33 @@
 import React, { useRef, useEffect } from "react"
 import PropTypes from "prop-types"
 
-import L from "leaflet"
-delete L.Icon.Default.prototype._getIconUrl
+import { map } from "leaflet/src/map"
+import { icon } from "leaflet/src/layer/marker/Icon"
+import { divIcon } from "leaflet/src/layer/marker/DivIcon"
+import { Marker } from "leaflet/src/layer/marker/Marker"
+import { tileLayer } from "leaflet/src/layer/tile/TileLayer"
+import { layerGroup } from "leaflet/src/layer/LayerGroup"
+// Required because dragging a marker tries to call closePopup
+// See https://github.com/Leaflet/Leaflet/issues/6961
+import "leaflet/src/layer/Popup"
+import { polyline } from "leaflet/src/layer/vector/Polyline"
+import "leaflet/src/layer/vector/Renderer.getRenderer"
+
+//delete L.Icon.Default.prototype._getIconUrl
 
 import "leaflet/dist/leaflet.css"
 // Bundlers do not package the leaflet assets referenced from the leaflet.css
 // properly, so we do it here manually.
 // https://github.com/parcel-bundler/parcel/issues/973#issuecomment-484470626
-L.Icon.Default.mergeOptions({
+/*L.Icon.Default.mergeOptions({
   iconUrl: require("leaflet/dist/images/marker-icon.png"),
   iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
   shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
   layerUrl: require("leaflet/dist/images/layers.png"),
   layerRetinaUrl: require("leaflet/dist/images/layers-2x.png"),
-})
+})*/
 
-const finishIcon = L.icon({
+const finishIcon = icon({
   iconUrl: require("../../../images/destination-flag.svg"),
 
   iconSize:     [64, 64], // size of the icon
@@ -27,11 +38,11 @@ export default function Map({ coords, onAddMarker, onUpdateMarker }) {
   const mapRef = useRef()
   const mapElementRef = useRef()
   useEffect(() => {
-    mapRef.current = L.map(mapElementRef.current, {
+    mapRef.current = map(mapElementRef.current, {
       center: [52.49399462011186, 13.048869228791695],
       zoom: 13,
       layers: [
-        L.tileLayer("https://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+        tileLayer("https://{s}.tile.osm.org/{z}/{x}/{y}.png", {
           attribution:
             "&copy; <a href=\"https://osm.org/copyright\">OpenStreetMap</a> contributors",
         }),
@@ -46,7 +57,7 @@ export default function Map({ coords, onAddMarker, onUpdateMarker }) {
 
   const markerLayerRef = useRef()
   useEffect(() => {
-    markerLayerRef.current = L.layerGroup().addTo(mapRef.current).on("click", onMarkerLayerClick)
+    markerLayerRef.current = layerGroup().addTo(mapRef.current).on("click", onMarkerLayerClick)
   }, [])
 
   useEffect(() => {
@@ -55,9 +66,15 @@ export default function Map({ coords, onAddMarker, onUpdateMarker }) {
     coords.forEach((coord, index) => {
       let marker
       if (index > 0 && index === lastIndex) {
-        marker = L.marker([coord[0], coord[1]], { draggable: true, icon: finishIcon })
+        marker = new Marker([coord[0], coord[1]], { draggable: true, icon: finishIcon })
       } else {
-        marker = L.marker([coord[0], coord[1]], { draggable: true })
+        marker = new Marker([coord[0], coord[1]], {
+          draggable: true,
+          icon: divIcon({
+            html: `${1 + index}`,
+            className: "marker",
+          }),
+        })
       }
       marker.on("dragend", (event) => {
         // FIXME: There must be a better way to get the coords from the event
@@ -69,12 +86,12 @@ export default function Map({ coords, onAddMarker, onUpdateMarker }) {
 
   const trackLayerRef = useRef()
   useEffect(() => {
-    trackLayerRef.current = L.layerGroup().addTo(mapRef.current)
+    trackLayerRef.current = layerGroup().addTo(mapRef.current)
   }, [])
 
   useEffect(() => {
     trackLayerRef.current.clearLayers()
-    L.polyline(coords.map(coord => [coord[0], coord[1]])).addTo(trackLayerRef.current)
+    polyline(coords.map(coord => [coord[0], coord[1]])).addTo(trackLayerRef.current)
   }, [coords])
 
   const style = {

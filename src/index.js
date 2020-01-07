@@ -13,13 +13,20 @@ const COORDS = [
 ]
 
 const root = document.getElementById("app")
+
+const metaContent = (name) => {
+  const element = document.querySelector(`meta[name=${name}]`)
+  return element && element.getAttribute("content")
+}
+
+const meta = (...args) => args.map(metaContent)
+
+const [ version, branch ] = meta("version", "branch")
+
 render(
   <App
     feedbackEmail={author.email}
-    git={{
-      version: root.dataset.version,
-      branch: root.dataset.branch,
-    }}
+    git={{ version, branch }}
     coords={COORDS}
   />,
   root
