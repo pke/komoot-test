@@ -326,3 +326,16 @@ a.negative.feedback:hover {
     content: "";
   }
 }
+
+#map .marker {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  color: white;
+  font-weight: 800;
+  text-shadow: 1px 1px #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 12px -1px;
+}
