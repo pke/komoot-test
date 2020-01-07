@@ -109,7 +109,7 @@ export default function App({ feedbackEmail, coords:initialCoords, git }) {
         </Flex>
         <VersionLabel version={git.version} branch={git.branch} className="version"/>
       </Tools>
-      <section id="map"><Map coords={trackPoints} onAddMarker={onAddMarker} onUpdateMarker={updateTrackPoint}/></section>
+      <Map id="map" coords={trackPoints} onAddMarker={onAddMarker} onUpdateMarker={updateTrackPoint}/>
       { showAddMarkerDialog && <AddMarkerDialog {...addMarkerFields} done={addMarkerDone}/> }
     </>
   )

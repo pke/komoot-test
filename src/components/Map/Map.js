@@ -34,7 +34,7 @@ const finishIcon = icon({
   iconAnchor:   [30, 50], // point of the icon which will correspond to marker's location
 })
 
-export default function Map({ coords, onAddMarker, onUpdateMarker }) {
+export default function Map({ coords, onAddMarker, onUpdateMarker, ...props }) {
   const mapRef = useRef()
   const mapElementRef = useRef()
   useEffect(() => {
@@ -113,12 +113,7 @@ export default function Map({ coords, onAddMarker, onUpdateMarker }) {
     }
   }, [coords, trackLayerRef.current])
 
-  const style = {
-    width: "100%",
-    height: "100%",
-    background: "green",
-  }
-  return <div ref={mapElementRef} style={style}></div>
+  return <section ref={mapElementRef} {...props}></section>
 }
 Map.propTypes = {
   coords: PropTypes.arrayOf(PropTypes.array),
