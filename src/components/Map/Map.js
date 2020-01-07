@@ -49,7 +49,12 @@ export default function Map({ coords, onAddMarker, onUpdateMarker }) {
       ],
     })
       .on("click", onMarkerLayerClick)
-  }, [])
+
+    return () => {
+      mapRef.current.remove()
+      mapRef.current = null
+    }
+  }, [mapElementRef.current])
 
   const onMarkerLayerClick = ({ latlng, originalEvent: { ctrlKey } }) => {
     onAddMarker({ ...latlng, fast: !ctrlKey })
@@ -58,10 +63,14 @@ export default function Map({ coords, onAddMarker, onUpdateMarker }) {
   const markerLayerRef = useRef()
   useEffect(() => {
     markerLayerRef.current = layerGroup().addTo(mapRef.current).on("click", onMarkerLayerClick)
-  }, [])
+    return () => {
+      markerLayerRef.current.remove()
+      markerLayerRef.current = null
+    }
+  }, [mapRef.current])
 
   useEffect(() => {
-    markerLayerRef.current.clearLayers()
+    markerLayerRef.current && markerLayerRef.current.clearLayers()
     const lastIndex = coords.length - 1
     coords.forEach((coord, index) => {
       let marker
@@ -87,12 +96,22 @@ export default function Map({ coords, onAddMarker, onUpdateMarker }) {
   const trackLayerRef = useRef()
   useEffect(() => {
     trackLayerRef.current = layerGroup().addTo(mapRef.current)
-  }, [])
+    return () => {
+      trackLayerRef.current.remove()
+      trackLayerRef.current = null
+    }
+  }, [mapRef.current])
+
+  const trackLineRef = useRef()
 
   useEffect(() => {
     trackLayerRef.current.clearLayers()
-    polyline(coords.map(coord => [coord[0], coord[1]])).addTo(trackLayerRef.current)
-  }, [coords])
+    trackLineRef.current = polyline(coords.map(([lat, lng]) => [lat, lng])).addTo(trackLayerRef.current)
+    return () => {
+      trackLineRef.current.remove()
+      trackLineRef.current = null
+    }
+  }, [coords, trackLayerRef.current])
 
   const style = {
     width: "100%",
