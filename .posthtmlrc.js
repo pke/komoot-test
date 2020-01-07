@@ -2,6 +2,8 @@ const execSync = require("child_process").execSync
 
 const { name } = require("./package.json")
 
+console.log("pwd", process.cwd(), "__dirname", __dirname)
+
 const gitCommands = {
   GIT_VERSION: (process.env.NOW_GITHUB_COMMIT_SHA && process.env.NOW_GITHUB_COMMIT_SHA.substr(0, 7)) || "git describe --always --tags --dirty=+",
   GIT_HASH: process.env.NOW_GITHUB_COMMIT_SHA || "git rev-parse HEAD",
