@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="version" content="{{process.env.GIT_VERSION}}">
+  <meta name="branch" content="{{process.env.GIT_BRANCH}}">
   <link rel="stylesheet" href="./index.css" />
   <title>{{name}} ({{process.env.GIT_VERSION}})</title>
 </head>
 <body>
-  <main id="app" data-version="{{process.env.GIT_VERSION}}" data-branch="{{process.env.GIT_BRANCH}}"></main>
+  <main id="app"></main>
   <script src="./index.js"></script>
 </body>
 </html>
