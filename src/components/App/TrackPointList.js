@@ -11,7 +11,7 @@ const defaultTitle = (index, lastIndex) => (
     ? "Start"
     : index === lastIndex
       ? "Finish"
-      : undefined
+      : `Waypoint ${index}`
 )
 
 const key = coord => coord.toString()
