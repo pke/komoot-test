@@ -54,7 +54,7 @@ export default function Map({ coords, onAddMarker, onUpdateMarker, ...props }) {
       mapRef.current.remove()
       mapRef.current = null
     }
-  }, [mapElementRef.current])
+  }, [mapElementRef])
 
   const onMarkerLayerClick = ({ latlng, originalEvent: { ctrlKey } }) => {
     onAddMarker({ ...latlng, fast: !ctrlKey })
@@ -67,7 +67,7 @@ export default function Map({ coords, onAddMarker, onUpdateMarker, ...props }) {
       markerLayerRef.current.remove()
       markerLayerRef.current = null
     }
-  }, [mapRef.current])
+  }, [mapRef])
 
   useEffect(() => {
     markerLayerRef.current && markerLayerRef.current.clearLayers()
@@ -92,7 +92,7 @@ export default function Map({ coords, onAddMarker, onUpdateMarker, ...props }) {
       })
         .addTo(markerLayerRef.current)
     })
-  }, [coords])
+  }, [coords, markerLayerRef])
 
   const trackLayerRef = useRef()
   useEffect(() => {
@@ -101,7 +101,7 @@ export default function Map({ coords, onAddMarker, onUpdateMarker, ...props }) {
       trackLayerRef.current.remove()
       trackLayerRef.current = null
     }
-  }, [mapRef.current])
+  }, [mapRef, trackLayerRef])
 
   const trackLineRef = useRef()
 
@@ -112,7 +112,7 @@ export default function Map({ coords, onAddMarker, onUpdateMarker, ...props }) {
       trackLineRef.current.remove()
       trackLineRef.current = null
     }
-  }, [coords, trackLayerRef.current])
+  }, [coords, trackLineRef, trackLayerRef])
 
   return <section ref={mapElementRef} {...props}></section>
 }
