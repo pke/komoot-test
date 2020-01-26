@@ -82,6 +82,7 @@ export default function Map({ coords, onAddMarker, onUpdateMarker, ...props }) {
           icon: divIcon({
             html: `${1 + index}`,
             className: "marker",
+            iconAnchor: [12, 12],
           }),
         })
       }

@@ -339,4 +339,6 @@ a.negative.feedback:hover {
   justify-content: center;
   align-items: center;
   box-shadow: 0 2px 12px -1px;
+  background: black;
+  padding: 6px;
 }
