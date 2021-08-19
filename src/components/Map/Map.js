@@ -31,7 +31,7 @@ import "./leaflet.css"
 })*/
 
 const finishIcon = icon({
-  iconUrl: require("../../../images/destination-flag.svg"),
+  iconUrl: require("url:../../../images/destination-flag.svg"),
 
   iconSize:     [64, 64], // size of the icon
   iconAnchor:   [30, 50], // point of the icon which will correspond to marker's location
