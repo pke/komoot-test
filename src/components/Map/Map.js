@@ -15,7 +15,10 @@ import "leaflet/src/layer/vector/Renderer.getRenderer"
 
 //delete L.Icon.Default.prototype._getIconUrl
 
-import "leaflet/dist/leaflet.css"
+// Use this until https://github.com/parcel-bundler/parcel/pull/3887 is
+// published on npm
+import "./leaflet.css"
+
 // Bundlers do not package the leaflet assets referenced from the leaflet.css
 // properly, so we do it here manually.
 // https://github.com/parcel-bundler/parcel/issues/973#issuecomment-484470626
@@ -28,7 +31,7 @@ import "leaflet/dist/leaflet.css"
 })*/
 
 const finishIcon = icon({
-  iconUrl: require("../../../images/destination-flag.svg"),
+  iconUrl: require("url:../../../images/destination-flag.svg"),
 
   iconSize:     [64, 64], // size of the icon
   iconAnchor:   [30, 50], // point of the icon which will correspond to marker's location
