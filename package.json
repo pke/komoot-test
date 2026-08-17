@@ -24,27 +24,28 @@
     "url": "https://pke.fyi/"
   },
   "dependencies": {
-    "core-js": "3.16.2",
-    "leaflet": "1.6.0",
-    "prop-types": "15.7.2",
-    "react": "16.12.0",
-    "react-dom": "16.12.0"
+    "core-js": "3.50.0",
+    "leaflet": "1.9.4",
+    "prop-types": "15.8.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "@parcel/transformer-image": "2.0.0-rc.0",
-    "chai": "4.2.0",
-    "enzyme": "3.11.0",
-    "eslint": "6.8.0",
-    "eslint-plugin-import": "2.19.1",
-    "eslint-plugin-jsdoc": "20.0.0",
-    "eslint-plugin-mocha": "6.2.2",
-    "eslint-plugin-react": "7.17.0",
-    "eslint-plugin-react-hooks": "2.3.0",
-    "jest": "27.0.6",
-    "parcel": "2.0.0-rc.0",
-    "postcss": "8.2.15",
-    "posthtml-expressions": "1.1.1",
-    "stylelint": "13.13.1",
-    "stylelint-config-standard": "22.0.0"
+    "@parcel/transformer-image": "2.16.4",
+    "assert": "2.1.0",
+    "chai": "4.5.0",
+    "eslint": "8.57.1",
+    "eslint-plugin-import": "2.32.0",
+    "eslint-plugin-jsdoc": "48.11.0",
+    "eslint-plugin-mocha": "10.5.0",
+    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "jest": "30.4.2",
+    "parcel": "2.16.4",
+    "postcss": "8.5.26",
+    "posthtml-expressions": "1.11.4",
+    "process": "0.11.10",
+    "stylelint": "16.26.1",
+    "stylelint-config-standard": "39.0.1"
   }
 }

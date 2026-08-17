@@ -19,7 +19,7 @@ parserOptions:
   sourceType: module
 settings:
   react:
-    version: "16.12"
+    version: "18.3"
 plugins:
   - react
   - mocha

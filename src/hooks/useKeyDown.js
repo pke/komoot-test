@@ -1,3 +1,5 @@
+/** @module useKeyDown */
+
 import { useEffect } from "react"
 
 /**

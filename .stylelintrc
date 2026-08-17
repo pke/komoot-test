@@ -4,9 +4,7 @@
   ],
   "syntax": "css",
   "rules": {
-    "number-leading-zero": "never",
     "comment-empty-line-before": "never",
-    "no-descending-specificity": null,
-    "declaration-block-trailing-semicolon": null
+    "no-descending-specificity": null
   },
 }

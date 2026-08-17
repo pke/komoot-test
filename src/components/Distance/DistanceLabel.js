@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import React from "react"
 
-import formatDistance from "./formatDistance"
+const formatDistance = require("./formatDistance")
 
 export default function DistanceLabel({ distance, ...props }) {
   return (
