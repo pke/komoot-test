@@ -1,7 +1,11 @@
+const path = require("path")
+
+const resolveFromDocs = (...parts) => path.resolve(__dirname, ...parts)
+
 module.exports = {
   title: "komoot Test Docs",
   skipComponentsWithoutExample: true,
-  styleguideDir: "../public/docs",
+  styleguideDir: resolveFromDocs("../public/docs"),
   pagePerSection: true,
   updateExample(props, file) {
     // Don't use interactive hook examples, as they can not be resolved
@@ -19,14 +23,14 @@ module.exports = {
   sections: [
     {
       name: "README",
-      content: "../README.md",
+      content: resolveFromDocs("../README.md"),
     }, {
       name: "Hooks",
-      content: "./hooks.md",
+      content: resolveFromDocs("./hooks.md"),
     },
     {
       name: "Components",
-      components: "../src/components/**/[A-Z]*.js",
+      components: resolveFromDocs("../src/components/**/[A-Z]*.js"),
     },
   ],
   theme: {
@@ -47,17 +51,20 @@ module.exports = {
         {
           test: /\.js?$/,
           exclude: /node_modules/,
-          loader: "babel-loader",
+          loader: require.resolve("babel-loader"),
+          options: {
+            configFile: resolveFromDocs("babel.config.js"),
+          },
         },
         {
           test: /\.(jpg|png|svg)$/,
           use: {
-            loader: "url-loader",
+            loader: require.resolve("url-loader"),
           },
         },
         {
           test: /\.css$/,
-          use: ["css-loader"],
+          use: [require.resolve("css-loader")],
         },
       ],
     },

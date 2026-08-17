@@ -1,3 +1,5 @@
+/** @module useDialog */
+
 import assert from "assert"
 import { useState } from "react"
 

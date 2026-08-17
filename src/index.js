@@ -1,5 +1,5 @@
 import React from "react"
-import { render } from "react-dom"
+import { createRoot } from "react-dom/client"
 
 import App from "./components/App/App"
 import { author } from "../package.json"
@@ -23,11 +23,10 @@ const meta = (...args) => args.map(metaContent)
 
 const [ version, branch ] = meta("version", "branch")
 
-render(
+createRoot(root).render(
   <App
     feedbackEmail={author.email}
     git={{ version, branch }}
     coords={COORDS}
-  />,
-  root
+  />
 )
